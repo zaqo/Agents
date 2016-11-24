@@ -1,13 +1,12 @@
 ﻿<?php 
-		
 		echo <<<END
 		<html>
 		
 		<head>
-		<title>АГЕНТЫ</title>
+		<title>РЕЗУЛЬТАТЫ</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf8">
 		
-		<link rel="stylesheet" type="text/css" href="/test/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="../test/css/style.css" />
 		
 	</head>
 	<body>
@@ -24,7 +23,7 @@ END;
 					die(print_r(sqlsrv_errors(),true));
 					}
 		
-		$tsql = "select [Income], CONVERT(time,[Time]),[Outcome No_],[Owner Name] from $tablename WHERE  CONVERT (date, [Date Income])= CONVERT (date, GETDATE()) ORDER BY [Time]; "; //������
+		$tsql = "select [Income], CONVERT(time,[Time]),[Outcome No_],[Owner Name] from $tablename WHERE  CONVERT (date, [Date])= CONVERT (date, GETDATE()) ORDER BY [Time]; "; //Запрос
 
 		$stmt = sqlsrv_query( $conn, $tsql);
 		
@@ -44,7 +43,7 @@ END;
 		
 		// Top of the table
 		echo "<table>";
-		echo '<tr><th>№ </th><th>ВРЕМЯ</th><th>РЕЙС</th><th>АВИАКОМПАНИЯ</th><th>АГЕНТЫ</th></tr>';
+		echo '<tr><th>№ </th><th>Время</th><th>Рейс</th><th>Агенты</th></tr>';
 		// Iterating through the array
 		$counter=1;
 		while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_NUMERIC) )  
@@ -64,7 +63,7 @@ END;
 			$result_arr = mysqli_fetch_row($answsql);//$answsql->fetch_array(MYSQLI_NUM);;
 			$ag1_in=$result_arr[1];
 			
-			$textsql='SELECT  registry.agent1,agents.name FROM registry LEFT JOIN agents ON registry.agent2=agents.tab_num WHERE route="'.$flightcode.'" AND date=CURDATE() ';
+			$textsql='SELECT  registry.agent2,agents.name FROM registry LEFT JOIN agents ON registry.agent2=agents.tab_num WHERE route="'.$flightcode.'" AND date=CURDATE() ';
 			$answsql=mysqli_query($db_server,$textsql);
 			$num_of_ags=mysqli_num_rows($answsql);
 			$result_arr = mysqli_fetch_row($answsql);
@@ -77,8 +76,7 @@ END;
 			$ag3_in=$result_arr[1];
 			
 			echo "<tr><td rowspan=\"3\" >$counter</td><td rowspan=\"3\">$time_of_dep</td>
-						<td rowspan=\"3\">$flightcode</td>
-						<td rowspan=\"3\"><a href=enter_agents.php?flightcode=$flightcode&step=1;>$aircarrier</a></td>
+						<td rowspan=\"3\"><a href=enter_agents.php?flightcode=$flightcode&step=1;>$flightcode</td>
 						<td>$ag1_in </td></tr><tr><td>$ag2_in</td> </tr><tr><td>$ag3_in</td></tr>";
 			$counter+=1;
 			}
