@@ -19,13 +19,13 @@ include ("login_agents.php");
 
 		function addMyField () {
 			var telnum = parseInt($('#add_field_area').find('div.add:last').attr('id').slice(3))+1;
-			var $content=$("select#agents").html();
+			var $content=$("select#val").html();
 			//alert ($content);
 			//var $agents=$('#agents').clone(true);
 			//alert(agents);
 			//$('div#add_field_area').append($agents);
 			$('div#add_field_area').find('div.add:last').append('<hr><tr><div id="add'+telnum+'" class="add"><label> №'+telnum+
-			'</label><select name="agent'+telnum+'" >'+$content+
+			'</label><select name="val'+telnum+'" id="val" onblur="writeFieldsVlues();" >'+$content+
 			'</select></div></tr><tr><div class="deletebutton" onclick="deleteField('+telnum+');"></div></tr>');
 		}
 		function addList(str) {
@@ -46,10 +46,10 @@ include ("login_agents.php");
 		function writeFieldsValues () {
 			var str = [];
 			var tel = '';
-			for(var i = 0; i<$("input#val").length; i++) {
-			tel = $($("input#val")[i]).val();
+			for(var i = 0; i<$("select#val").length; i++) {
+			tel = $($("select#val")[i]).val();
 				if (tel !== '') {
-					str.push($($("input#val")[i]).val());
+					str.push($($("input#values")[i]).val());
 				}
 			}
 			$("input#values").val(str.join("|"));
@@ -93,7 +93,7 @@ include ("login_agents.php");
 		if (($step==1) or (!isset($step))) // AGENTS HAVE NOT BEEN SET YET : BUT THIS METHOD - IT LOOKS UGLY!
 		{
 			echo  "<h1>"." ВЫБЕРИТЕ СОТРУДНИКОВ: "." </h1> ";	
-			echo '<form action=enter_agents.php>';
+			echo '<form action=enter_agents_short.php>';
 			echo "<div id=\"add_field_area\">";
 			echo "<table>";
 			echo "<tr><th>РЕЙС: $flightcode</th></tr>";
@@ -110,7 +110,7 @@ include ("login_agents.php");
 				
 					$agent1=$rowin[0];
 				
-					$str_out= '<tr><td><div id="add1" class="add"><label>№1:</label><select class="agents" id="agents" name="agent1" >';
+					$str_out= '<tr><td><div id="add1" class="add"><label>№1:</label><select class="agents" id="val" onblur="writeFieldsValues();" name="val1" >';
 					
 					foreach ($ag_in as $agent){
 					
@@ -125,7 +125,7 @@ include ("login_agents.php");
 			}
 			else{
 				
-				$str_out ='<tr><td><div id="add1" class="add"><label>№1:</label><select class="agents" id="agents" name="agent1"><option value=""></option>';
+				$str_out ='<tr><td><div id="add1" class="add"><label>№1:</label><select class="agents" id="val" onblur="writeFieldsValues();" name="val1"><option value=""></option>';
 					foreach ($ag_in as $agent) 
 						$str_out=$str_out.'<option value="'.($agent[0]).'">'.($agent[1]).'</option>';
 				
@@ -138,12 +138,12 @@ include ("login_agents.php");
 			</div>
 			<tr><td>
 				<div onclick="addMyField();" class="addbutton">Добавить агента</div>
-        <!--<input type="hidden" name="values" id="values"  value="<?php=$array?>"/> -->
+       
 			</tr></td>
-			<input type="hidden" name="values" id="values"  value="<?php=$ag_in[1][0]?>"/>			
+					
 		
 			<tr><td><center><input type="hidden" value=2 name="step">
-			 <input type="hidden" value="'.$flightcode.'" name="flightcode">
+			 <input type="hidden" value="<?=$flightcode?>" name="flightcode">
 			 <input type="submit" value="ВВОД">
 			 </td></tr>
 			</table>
@@ -152,15 +152,23 @@ include ("login_agents.php");
    };
    if ($step==2) //After SUBMIT we update records
    {
-	$agent1='';
-	$agent2='';
-	$agent3='';
+	$agents=array();
+	$count = count($_GET)-2;
+	$ik=0;
 	$flightcode= $_GET['flightcode'];
-	$agent1= $_GET['agent1'];
+
+	foreach ($_GET as $got)
+	{
+		$agents[$ik]=$got;
+		$ik++;
+	}
+	$agents[]=$count;
+	//$agent1= $_GET['values'];
+	var_dump($agents);
 	//$agent2= $_GET['agent2'];
 	//$agent3= $_GET['agent3'];
 		//echo 'Agent #1:  '.$agent1.' Agent #2: '.$agent2."Agent #3: ".$agent3.'\n';
-	
+	/*
 	if ($nop) //IF NO RECORDS EXIST - PLEASE CHECK THIS OUT!
 		{
 			$textsql='UPDATE registry SET agent1="'.$agent1.'" WHERE route="'.$flightcode.'" AND date = CURDATE()';
@@ -175,7 +183,7 @@ include ("login_agents.php");
 			if(!$answsql) die("Database update failed: ".mysqli_error($db_server));
 			echo '<script>history.go(-2)</script>';
 			//echo '<meta http-equiv="refresh" content="0; URL="http://portal.pulkovo-airport.com\test\start_mssql.php"" />';
-		}
+		}*/
    }
    
 mysqli_close($db_server);
