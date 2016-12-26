@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+include ("login_agents.php"); 
+?>
 <html lang="ru">
 	<head>
 		<title>Форма</title>
@@ -15,7 +17,6 @@
 	 <div class="dropdown">
 		<button onclick="myFunction()" class="dropbtn">Меню</button>
 		<div id="myDropdown" class="dropdown-content">
-			<a href="/prod/index.html">По сотрудникам</a>
 			<a href="pers_rec.php">Данные сотрудника</a>
 		</div>
 	</div>
@@ -46,6 +47,32 @@ toggle between hiding and showing the dropdown content */
 		<h1>Работа агента за период</h1>
 		
 		<form id="form" method="post" action="stats_by_day.php" >
+			<p>Сотрудник:</p>
+			<div id="agent">
+			<?php
+				
+				//Connect to database
+				$db_server = mysqli_connect($db_hostname, $db_username,$db_password);
+				$db_server->set_charset("utf8");
+				If (!$db_server) die("Can not connect to a database!!".mysqli_connect_error($db_server));
+				mysqli_select_db($db_server,$db_database)or die(mysqli_error($db_server));
+		
+				//Prepare list of agents
+				$textsql='SELECT  tab_num,name FROM agents WHERE status=1 ORDER BY name';
+				$answsql=mysqli_query($db_server,$textsql);
+				$num_of_ags=mysqli_num_rows($answsql);
+				$i=0;
+				$ag_in=array();
+				$ag_string='';
+					for ($i=0;$i<$num_of_ags;$i++)  
+					{
+						$ag_in[$i]= mysqli_fetch_row($answsql);
+						$ag_string=$ag_string.'<option value="'.($ag_in[$i][0]).'">'.($ag_in[$i][1]).'</option>';
+					}
+				$ag_string='<select class="agents" id="val1" name="val"><option value=""></option>'.$ag_string.'</select>';
+				echo $ag_string;
+			?>
+			</div>
 			<p>С:</p>
 			<p>День:</p>
 			<div id="day"><p> 	
@@ -174,31 +201,7 @@ toggle between hiding and showing the dropdown content */
 				</select></p></label>
 			
 			</div>
-			<div id="agent">
-			<?php
-				include ("login_agents.php");?>
-				<?php//Connect to database
-				$db_server = mysqli_connect($db_hostname, $db_username,$db_password);?>
-				<?php $db_server->set_charset("utf8");?>
-				<?php If (!$db_server) die("Can not connect to a database!!".mysqli_connect_error($db_server));?>
-				<?php mysqli_select_db($db_server,$db_database)or die(mysqli_error($db_server));?>
-		
-				<?php//Prepare list of agents
-				$textsql='SELECT  tab_num,name FROM agents WHERE status=1 ORDER BY name';?>
-				<?php $answsql=mysqli_query($db_server,$textsql);?>
-				<?php $num_of_ags=mysqli_num_rows($answsql);?>
-				<?php $i=0;?>
-				<?php $ag_in=array();?>
-				<?php $ag_string='';?>
-					<?phpfor ($i=0;$i<$num_of_ags;$i++)  
-					{
-						$ag_in[$i]= mysqli_fetch_row($answsql);
-						$ag_string=$ag_string.'<option value="'.($ag_in[$i][0]).'">'.($ag_in[$i][1]).'</option>';
-					}?>
-				<?php$ag_string='<select class="agents" id="val1" name="val"><option value=""></option>'.$ag_string.'</select>';?>
-				<?phpecho $ag_string;
-			?>
-			</div>
+			
 			<p><div id="errors"></div></p>	
 			<p><input type="submit" name="send" class="send" value="ВВОД"></p>
 		</form>
@@ -229,5 +232,8 @@ toggle between hiding and showing the dropdown content */
 		});	
 		
 		</script>
+		<?php mysqli_free_result($answsql);
+			mysqli_close($db_server);
+		?>
 	</body>
 </html>

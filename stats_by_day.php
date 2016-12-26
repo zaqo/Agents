@@ -22,12 +22,14 @@ END;
 		mysql_select_db($db_database)or die(mysql_error());
 		
 	
+		$tab_num= $_POST['val'];
 		$day = $_POST['day'];
+		$day_to = $_POST['day_to'];
 		$year_from    = $_POST['year_from'];
 		$month_from    = $_POST['month_from'];
-		//$year_to    = $_POST['year_to'];
-		//$month_to   = $_POST['month_to'];
-
+		$year_to    = $_POST['year_to'];
+		$month_to   = $_POST['month_to'];
+		$carrier   = $_POST['carrier'];
 	
 	$startdate='';
 	switch ($month_from) {
@@ -147,41 +149,41 @@ END;
 	$input_d=array($year_from,$month_from,$day);
 	//$date_q=implode("-",$input_d);
 	
-	$date_q=mktime(0,0,0,$month_from,$day,$year_from);
+	$date_f=mktime(0,0,0,$month_from,$day,$year_from);
+	$date_t=mktime(0,0,0,$month_to,$day_to,$year_to);
 	//echo "DATE is: ".$date_q."<\br>";
-	$date_my=date("Y-m-d", $date_q);
+	$date_from=date("Y-m-d", $date_f);
+	$date_to=date("Y-m-d", $date_t);
+	$date_from_g=date("d-m-Y", $date_f);
+	$date_to_g=date("d-m-Y", $date_t);
 	//echo "PROCESSED DATE is: ".$date_my."<\br>";
-	$query_day = "SELECT oneregister.route, agents.name FROM registry LEFT JOIN agents ON registry.agent1=agents.tab_num WHERE registry.date='$date_my'";
+	if ($tab_num)
+		$query_day = "SELECT date,route,agents.name FROM oneregister LEFT JOIN agents ON oneregister.agent=agents.tab_num WHERE oneregister.date BETWEEN '$date_from' AND '$date_to' AND oneregister.route LIKE '$carrier%' AND agents.tab_num='$tab_num'";
+	else
+	   $query_day = "SELECT date,route,agents.name FROM oneregister LEFT JOIN agents ON oneregister.agent=agents.tab_num WHERE oneregister.date BETWEEN '$date_from' AND '$date_to' AND oneregister.route LIKE '$carrier%'";
+	
+	//echo $query_day."<br>";
 	$day_answ = mysql_query($query_day);
 	$rowsin = mysql_num_rows($day_answ);
-	//$day_row= mysql_fetch_row($day_answ);
+	$day_row= mysql_fetch_row($day_answ);
 	//echo "RESPONSE is: ".$rowsin."<\br>";	
 	
-		echo  "<h1>"." СТАТИСТИКА РАБОТЫ:</br></br><div align='center'>".$date_my." </div></h1> ";
+		echo  "<h1>"." СТАТИСТИКА РАБОТЫ:</h1><br><br><h2><div align='center'> C: ".$date_from_g."    ПО: ".$date_to_g." </div></h2> <br>";
 		//echo  "<h1> за период:</h1> ";	
 		echo "<table>";
-		echo "<tr><th>Рейс</th><th>Агент</th></tr>";
-		//echo "<tr><td>$startdate</td><td>$startyear</td><td>$enddate</td><td>$endyear</td></tr>";
-		//echo "</table></br></br>";
-		//$colsin = mysql_num_fields($resultin);
+		echo "<tr><th>Дата</th><th>Рейс</th><th>Агент</th></tr>";
 		
-	
-		//echo "<table>";
-		//echo "<tr><th>АЭРОПОРТ ВЫЛЕТА</th><th>ПРИБЫЛО РЕЙСОВ</th><th>СРЕДНЕЕ ЗА НЕДЕЛЮ</th></tr>";
-
 		for ($j=0; $j<$rowsin; $j++)
 		{
-			//$summain=0;
-			//$average=0;
-			//$rowin = mysql_fetch_row($resultin);
+			
 			$day_row= mysql_fetch_row($day_answ);
-			$ag_name=$day_row[1];
-			$airflight=$day_row[0];
-			echo "<tr><td>$airflight</td><td>$ag_name</td></tr>";
+			$ag_name=$day_row[2];
+			$airflight=$day_row[1];
+			echo "<tr><td>$day_row[0]</td><td>$airflight</td><td>$ag_name</td></tr>";
 		}
 		echo "</table>"; 
 	echo <<<_END
-	<a href="index_daily.html" > <img src="/prod/src/arrow_left.png" alt="Go back" title="Back" width="64" height="64"></a>
+	<a href="index_daily.php" > <img src="/Agents/src/arrow_left.png" alt="Go back" title="Back" width="64" height="64"></a>
 	</body>
 	</html>
 _END;
