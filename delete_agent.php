@@ -34,7 +34,7 @@ $row = 1;
 $inserted=0;
 $updated=0;
 				echo '<script>confirm("Удалить запись об агенте?")</script>';	
-				$textsql='DELETE FROM  registry WHERE agent="'.$tab_num.'" AND route="'.$flightcode.'" AND date=CURDATE()';
+				$textsql='DELETE FROM  oneregister WHERE agent="'.$tab_num.'" AND route="'.$flightcode.'" AND date=CURDATE()';
 				$answsql=mysqli_query($db_server,$textsql);
 				if(!$answsql) die("Database insert failed: ".mysqli_error($db_server));
 				echo '<script>history.go(-1);</script>';	
