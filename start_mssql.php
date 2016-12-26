@@ -3,10 +3,10 @@
 		<html>
 		
 		<head>
-		<title>РЕЗУЛЬТАТЫ</title>
+		<title>Суточный график</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf8">
 		
-		<link rel="stylesheet" type="text/css" href="../test/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/Agents/css/style.css" />
 		
 	</head>
 	<body>
@@ -42,7 +42,7 @@ END;
 		
 		
 		// Top of the table
-		echo "<table>";
+		echo "<table><caption><b>Суточный график работы</b></caption>";
 		echo '<tr><th>№ </th><th>Время</th><th>Рейс</th><th>Агенты</th></tr>';
 		// Iterating through the array
 		$counter=1;
@@ -57,7 +57,7 @@ END;
 				
 		
 				//LOOK UP list of agents
-				$textsql='SELECT  registry.agent1,agents.name FROM registry LEFT JOIN agents ON registry.agent1=agents.tab_num WHERE route="'.$flightcode.'" AND date=CURDATE() ';// AND DATE_FORMAT(date,"%d-%m-%Y") = "'.$datestr.'")'; 
+				$textsql='SELECT  oneregister.agent,agents.name FROM oneregister LEFT JOIN agents ON oneregister.agent=agents.tab_num WHERE route="'.$flightcode.'" AND date=CURDATE() ';// AND DATE_FORMAT(date,"%d-%m-%Y") = "'.$datestr.'")'; 
 				$answsql=mysqli_query($db_server,$textsql);
 				$num_of_ags=mysqli_num_rows($answsql);
 				$row_span=$num_of_ags;
@@ -67,17 +67,16 @@ END;
 				}
 				else
 				{
-					//echo "Number of agents".$num_of_ags."<\br>";
-				
-			
 					echo "<tr><td>$counter</td><td >$time_of_dep</td>
 						<td><a href=enter_agents.php?flightcode=$flightcode&step=1;>$flightcode</td><td>";
 						$ag_count=0;
 						while ($ag_count<$num_of_ags)
 						{
 							$result_arr = mysqli_fetch_row($answsql);//$answsql->fetch_array(MYSQLI_NUM);;
-							$ag1_in=$result_arr[1];
-							echo "$ag1_in ";
+							$ag_tab=$result_arr[0];
+							$ag_in=$result_arr[1];
+							//echo "<a href=delete_agent.php?tab_num=$ag_tab&flightcode=$flightcode>$ag_in , ";
+							echo "<a href=delete_agent.php?tab_num=$ag_tab&flightcode=$flightcode>$ag_in ";
 							$ag_count++;
 						}
 						echo "</td></tr>";

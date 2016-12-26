@@ -151,7 +151,7 @@ END;
 	//echo "DATE is: ".$date_q."<\br>";
 	$date_my=date("Y-m-d", $date_q);
 	//echo "PROCESSED DATE is: ".$date_my."<\br>";
-	$query_day = "SELECT registry.route, agents.name FROM registry LEFT JOIN agents ON registry.agent1=agents.tab_num WHERE registry.date='$date_my'";
+	$query_day = "SELECT oneregister.route, agents.name FROM registry LEFT JOIN agents ON registry.agent1=agents.tab_num WHERE registry.date='$date_my'";
 	$day_answ = mysql_query($query_day);
 	$rowsin = mysql_num_rows($day_answ);
 	//$day_row= mysql_fetch_row($day_answ);
