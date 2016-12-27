@@ -198,6 +198,15 @@ toggle between hiding and showing the dropdown content */
 				<select name="carrier" id="carrier" class="carrier" >
 				<option value="FV">Россия</option>
 				<option value="SU">Аэрофлот</option>
+				<option value="DP">Победа</option>
+				<option value="S7">S7</option>
+				<option value="U6">Уральские ав.</option>
+				<option value="7R">РусЛайн</option>
+				<option value="GH">Глобус</option>
+				<option value="UT">UTair</option>
+				<option value="LH">Lufthansa</option>
+				<option value="AY">Finnair</option>
+				<option value="AF">AirFrance</option>
 				</select></p></label>
 			
 			</div>
