@@ -1,0 +1,75 @@
+<!-- Скрипт здания новой карточки агента -->
+
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<title>Форма</title>
+		<meta charset="UTF-8" />
+		
+		<link rel="stylesheet" type="text/css" href="/Agents/css/style.css" />
+		<!--[if lt IE 9]> 
+			<script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<script type="text/javascript" src="../js/site.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		
+	
+	</head>
+	<body>
+	 <div class="dropdown">
+		<button onclick="myFunction()" class="dropbtn">Меню</button>
+		<div id="myDropdown" class="dropdown-content">
+			<a href="start_mssql.php">Дневной график</a>
+			<a href="stats_by_day.php">Отчет о работе агентов</a>
+			
+		</div>
+	</div>
+	 <script>
+	
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+	function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+	}
+
+// Close the dropdown if the user clicks outside of it
+	window.onclick = function(event) {
+		if (!event.target.matches('.dropbtn')) {
+
+			var dropdowns = document.getElementsByClassName("dropdown-content");
+			var i;
+			for (i = 0; i < dropdowns.length; i++) {
+			var openDropdown = dropdowns[i];
+				if (openDropdown.classList.contains('show')) {
+					openDropdown.classList.remove('show');
+				}
+			}
+		}
+	
+	}
+	</script> 
+		<h1>Карточка агента</h1>
+		<form method="post" name=f enctype="multipart/form-data"
+			action="add_agent.php" method="POST">
+						<table>
+						<tr><th><p>Cотрудник:</p></th></tr>
+						<tr><td><p>ФИО:<input type="text" name="fio" class="name" value="" placeholder="Иванова Марья Ивановна"/></p></td></tr>
+						<tr><td><p>Табельный номер <input type="text" value="" name="tab_num"></p></td></tr>
+						<tr><td><p>Статус:<input type="checkbox" name="Persdata[]" class="name" value="status" checked/></p></td></tr>
+						<tr><td><p>Системы:<br>
+											DCS - <input type="checkbox" name="Persdata[]" class="name" value="DCS" /><br>
+											Amadeus - <input type="checkbox" name="Persdata[]" class="name" value="Amadeus" /><br>
+											Sabre - <input type="checkbox" name="Persdata[]" class="name" value="Sabre" /><br>
+											BA - <input type="checkbox" name="Persdata[]" class="name" value="BA" /><br>
+											Navitar - <input type="checkbox" name="Persdata[]" class="name" value="Navitare" /><br>
+											Troya - <input type="checkbox" name="Persdata[]" class="name" value="Troya" /><br>
+											SITA - <input type="checkbox" name="Persdata[]" class="name" value="SITA" /><br>
+											Astra - <input type="checkbox" name="Persdata[]" class="name" value="Astra" /><br>
+											Travelsky - <input type="checkbox" name="Persdata[]" class="name" value="Travelsky" /><br>
+											AngeLight - <input type="checkbox" name="Persdata[]" class="name" value="AngeLight" /></p></td></tr>
+						<tr><td><p><input type="submit" name="send" class="send" value="ВВОД"></p></td></tr></table>';
+				
+				</form>
+		
+	</body>
+</html>

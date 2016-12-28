@@ -28,4 +28,3 @@ $updated=0;
 	
 mysqli_close($db_server);
 ?>
-</body></html>
