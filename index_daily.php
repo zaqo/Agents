@@ -19,6 +19,7 @@ include ("login_agents.php");
 		<div id="myDropdown" class="dropdown-content">
 			<a href="pers_rec.php">Данные сотрудника</a>
 			<a href="list_agents.php">Список сотрудников</a>
+			<a href="add_agent.html">Создать карточку</a>
 		</div>
 	</div>
 	 <script>
