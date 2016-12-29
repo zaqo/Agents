@@ -157,11 +157,20 @@ END;
 	$date_from_g=date("d-m-Y", $date_f);
 	$date_to_g=date("d-m-Y", $date_t);
 	//echo "PROCESSED DATE is: ".$date_my."<\br>";
-	if ($tab_num)
-		$query_day = "SELECT date,route,agents.name FROM oneregister LEFT JOIN agents ON oneregister.agent=agents.tab_num WHERE oneregister.date BETWEEN '$date_from' AND '$date_to' AND oneregister.route LIKE '$carrier%' AND agents.tab_num='$tab_num'";
+	if ($carrier)
+	{
+		if ($tab_num)
+			$query_day = "SELECT date,route,agents.name FROM oneregister LEFT JOIN agents ON oneregister.agent=agents.tab_num WHERE oneregister.date BETWEEN '$date_from' AND '$date_to' AND oneregister.route LIKE '$carrier%' AND agents.tab_num='$tab_num'";
+		else
+		$query_day = "SELECT date,route,agents.name FROM oneregister LEFT JOIN agents ON oneregister.agent=agents.tab_num WHERE oneregister.date BETWEEN '$date_from' AND '$date_to' AND oneregister.route LIKE '$carrier%'";
+	}
 	else
-	   $query_day = "SELECT date,route,agents.name FROM oneregister LEFT JOIN agents ON oneregister.agent=agents.tab_num WHERE oneregister.date BETWEEN '$date_from' AND '$date_to' AND oneregister.route LIKE '$carrier%'";
-	
+	{
+		if ($tab_num)
+			$query_day = "SELECT date,route,agents.name FROM oneregister LEFT JOIN agents ON oneregister.agent=agents.tab_num WHERE oneregister.date BETWEEN '$date_from' AND '$date_to' AND agents.tab_num='$tab_num'";
+		else
+		$query_day = "SELECT date,route,agents.name FROM oneregister LEFT JOIN agents ON oneregister.agent=agents.tab_num WHERE oneregister.date BETWEEN '$date_from' AND '$date_to'";
+	}
 	//echo $query_day."<br>";
 	$day_answ = mysql_query($query_day);
 	$rowsin = mysql_num_rows($day_answ);

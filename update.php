@@ -12,19 +12,29 @@ include ("login_agents.php");
 		If (!$db_server) die("Can not connect to a database!!".mysqli_connect_error($db_server));
 		mysqli_select_db($db_server,$db_database)or die(mysqli_error($db_server));
 		
-$row = 1;
-$inserted=0;
-$updated=0;
-					
+				$dim = count($Personal);
+
+				echo $dim."<br>";	
 				$textsql='UPDATE agents SET ';
 				
-				
-				foreach($Personal as $chkbox) $textsql=$textsql.", $chkbox=1 ";
-				$textsql=$textsql."WHERE tab_num=$tab_num";
-				echo $textsql."<br>";
+				$checked=0;
+				foreach($systems as $item) {
+					foreach($Personal as $input){ 
+						if($input==$item){
+							$checked=1;
+						}
+					}
+					if(!$checked)$textsql=$textsql." $item=0,";
+					else $textsql=$textsql." $item=1,";
+					$checked=0;
+				}
+				$textsql=substr($textsql,0,strlen($textsql)-1); // cut the last character
+
+				$textsql=$textsql." WHERE tab_num=$tab_num";
+				//echo $textsql."<br>";
 				$answsql=mysqli_query($db_server,$textsql);
 				if(!$answsql) die("Database insert failed: ".mysqli_error($db_server));
-				echo '<script>history.go(-1);</script>';	
+				echo '<script>history.go(-2);</script>';	
 	
 mysqli_close($db_server);
 ?>

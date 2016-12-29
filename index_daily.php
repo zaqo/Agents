@@ -196,6 +196,7 @@ toggle between hiding and showing the dropdown content */
 			<p>Авиакомпания:</p>
 			<div id="Carrier"><label><p> 	
 				<select name="carrier" id="carrier" class="carrier" >
+				<option value="0"></option>
 				<option value="FV">Россия</option>
 				<option value="SU">Аэрофлот</option>
 				<option value="DP">Победа</option>
