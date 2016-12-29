@@ -18,6 +18,7 @@ include ("login_agents.php");
 		<button onclick="myFunction()" class="dropbtn">Меню</button>
 		<div id="myDropdown" class="dropdown-content">
 			<a href="pers_rec.php">Данные сотрудника</a>
+			<a href="list_agents.php">Список сотрудников</a>
 		</div>
 	</div>
 	 <script>
