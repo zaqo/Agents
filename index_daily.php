@@ -133,6 +133,7 @@ toggle between hiding and showing the dropdown content */
 			</div>
 			<p>Год: <select name="year_from" id="yfr" class="date" >
 				<option value="2016">2016</option>
+				<option value="2017">2017</option>
 				</select>
 			</p>
 			<p>ПО:</p>
@@ -193,6 +194,7 @@ toggle between hiding and showing the dropdown content */
 			</div>
 			<p>Год: <select name="year_to" id="yto" class="date" >
 				<option value="2016">2016</option>
+				<option value="2017">2017</option>
 				</select>
 			</p>
 			<p>Авиакомпания:</p>
