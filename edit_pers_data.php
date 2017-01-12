@@ -39,7 +39,7 @@ $status="";
  $ba="";
  $nav="";
  $tro="";
- $sit="";
+ $ek="";
  $ast="";
  $tra="";
  $ang="";
@@ -56,33 +56,30 @@ $status="";
 				if ($person[6]) $ba="checked";
 				if ($person[7]) $nav="checked";
 				if ($person[8]) $tro="checked";
-				if ($person[9]) $sit="checked";
+				if ($person[9]) $ek="checked";
 				if ($person[10]) $ast="checked";
 				if ($person[12]) $ang="checked";
 				if ($person[11]) $tra="checked";
 				echo '<form id="form" method=post action=update.php >
 						<table>
-						<tr><th><p>Cотрудник:</p></th></tr>
-						<tr><td><p>ФИО:<input type="text" name="fio" class="name" value="'.$person[1].'" disabled/></p></td></tr>
-						<tr><td><p>Статус:<input type="checkbox" name="Persdata[]" class="name" value="status" '.$status.'/></p></td></tr>
-						<tr><td><p>Системы:<br>
-											DCS - <input type="checkbox" name="Persdata[]" class="name" value="DCS" '.$dcs.' /><br>
-											Amadeus - <input type="checkbox" name="Persdata[]" class="name" value="Amadeus" '.$ama.'/><br>
-											Sabre - <input type="checkbox" name="Persdata[]" class="name" value="Sabre" '.$sab.'/><br>
-											BA - <input type="checkbox" name="Persdata[]" class="name" value="BA" '.$ba.'/><br>
-											Navitar - <input type="checkbox" name="Persdata[]" class="name" value="Navitare" '.$nav.' /><br>
-											Troya - <input type="checkbox" name="Persdata[]" class="name" value="Troya" '.$tro.' /><br>
-											SITA - <input type="checkbox" name="Persdata[]" class="name" value="SITA" '.$sit.' /><br>
-											Astra - <input type="checkbox" name="Persdata[]" class="name" value="Astra" '.$ast.' /><br>
-											AngeLight - <input type="checkbox" name="Persdata[]" class="name" value="AngeLight" '.$ang.'/><br>
-											Travelsky - <input type="checkbox" name="Persdata[]" class="name" value="Travelsky" '.$tra.'/></p>
-							</td>
-						</tr>
-						<tr><td><p><input type="hidden" value="'.$id.'" name="tab_num"><input type="submit" name="send" class="send" value="ВВОД"></p></td></tr></table>';
-				
+						<tr><th colspan="2" ><p>Cотрудник:</p></th></tr>
+						<tr><td colspan="2"><p>ФИО:<input type="text" name="fio" class="name" value="'.$person[1].'" disabled/></p></td></tr>
+						<tr><td colspan="2"><p>Таб.номер: <input type="text" value="'.$id.'" name="tab_num" disabled/></p></td></tr>
+						<tr><td><p>Статус:</p></td><td><input type="checkbox" name="Persdata[]" class="name" value="status" '.$status.'/></td></tr>
+						<tr><td colspan="2"><p><b>Системы:</b></p></td></tr>
+						<tr><td>DCS</td><td><input type="checkbox" name="Persdata[]" class="name" value="DCS" '.$dcs.'/></td></tr>
+						<tr><td>Amadeus</td><td><input type="checkbox" name="Persdata[]" class="name" value="Amadeus" '.$ama.'/></td></tr>
+						<tr><td>Sabre</td><td><input type="checkbox" name="Persdata[]" class="name" value="Sabre" '.$sab.'/></td></tr>
+						<tr><td>BA</td><td><input type="checkbox" name="Persdata[]" class="name" value="BA" '.$ba.'/></td></tr>
+						<tr><td>Navitar</td><td><input type="checkbox" name="Persdata[]" class="name" value="Navitare" '.$nav.' /></td></tr>
+						<tr><td>Troya</td><td><input type="checkbox" name="Persdata[]" class="name" value="Troya" '.$tro.'/></td></tr>
+						<tr><td>EK</td><td><input type="checkbox" name="Persdata[]" class="name" value="SITA" '.$ek.'/></td></tr>
+						<tr><td>Astra</td><td><input type="checkbox" name="Persdata[]" class="name" value="Astra" '.$ast.'/></td></tr>
+						<tr><td>Travelsky</td><td><input type="checkbox" name="Persdata[]" class="name" value="Travelsky" '.$tra.'/></td></tr>
+						<tr><td>AngeLight</td><td><input type="checkbox" name="Persdata[]" class="name" value="AngeLight" '.$ang.'/></td></tr>
+						<tr><td colspan="2"><p><input type="hidden" value="'.$id.'" name="tab_num"><input type="submit" name="send" class="send" value="ВВОД"></p></td></tr></table>';					
 				echo '</form>';
 				
-	
 mysqli_close($db_server);
 ?>
 </body></html>

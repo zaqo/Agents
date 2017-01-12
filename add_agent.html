@@ -52,22 +52,22 @@ toggle between hiding and showing the dropdown content */
 		<form method="post" name=f enctype="multipart/form-data"
 			action="add_agent.php" method="POST">
 						<table>
-						<tr><th><p>Cотрудник:</p></th></tr>
-						<tr><td><p>ФИО:<input type="text" name="fio" class="name" value="" placeholder="Иванова Марья Ивановна"/></p></td></tr>
-						<tr><td><p>Табельный номер <input type="text" value="" name="tab_num"></p></td></tr>
-						<tr><td><p>Статус:<input type="checkbox" name="Persdata[]" class="name" value="status" checked/></p></td></tr>
-						<tr><td><p>Системы:<br>
-											DCS - <input type="checkbox" name="Persdata[]" class="name" value="DCS" /><br>
-											Amadeus - <input type="checkbox" name="Persdata[]" class="name" value="Amadeus" /><br>
-											Sabre - <input type="checkbox" name="Persdata[]" class="name" value="Sabre" /><br>
-											BA - <input type="checkbox" name="Persdata[]" class="name" value="BA" /><br>
-											Navitar - <input type="checkbox" name="Persdata[]" class="name" value="Navitare" /><br>
-											Troya - <input type="checkbox" name="Persdata[]" class="name" value="Troya" /><br>
-											SITA - <input type="checkbox" name="Persdata[]" class="name" value="SITA" /><br>
-											Astra - <input type="checkbox" name="Persdata[]" class="name" value="Astra" /><br>
-											Travelsky - <input type="checkbox" name="Persdata[]" class="name" value="Travelsky" /><br>
-											AngeLight - <input type="checkbox" name="Persdata[]" class="name" value="AngeLight" /></p></td></tr>
-						<tr><td><p><input type="submit" name="send" class="send" value="ВВОД"></p></td></tr></table>
+						<tr><th colspan="2" ><p>Cотрудник:</p></th></tr>
+						<tr><td colspan="2"><p>ФИО:<input type="text" name="fio" class="name" value="" placeholder="Иванова Марья Ивановна"/></p></td></tr>
+						<tr><td colspan="2"><p>Табельный номер: <input type="text" value="" name="tab_num"></p></td></tr>
+						<tr><td><p>Статус:</p></td><td><input type="checkbox" name="Persdata[]" class="name" value="status" checked/></td></tr>
+						<tr><td colspan="2"><p><b>Системы:</b></p></td></tr>
+						<tr><td>DCS</td><td><input type="checkbox" name="Persdata[]" class="name" value="DCS" /></td></tr>
+						<tr><td>Amadeus</td><td><input type="checkbox" name="Persdata[]" class="name" value="Amadeus" /></td></tr>
+						<tr><td>Sabre</td><td><input type="checkbox" name="Persdata[]" class="name" value="Sabre" /></td></tr>
+						<tr><td>BA</td><td><input type="checkbox" name="Persdata[]" class="name" value="BA" /></td></tr>
+						<tr><td>Navitar</td><td><input type="checkbox" name="Persdata[]" class="name" value="Navitare" /></td></tr>
+						<tr><td>Troya</td><td><input type="checkbox" name="Persdata[]" class="name" value="Troya" /></td></tr>
+						<tr><td>EK</td><td><input type="checkbox" name="Persdata[]" class="name" value="SITA" /></td></tr>
+						<tr><td>Astra</td><td><input type="checkbox" name="Persdata[]" class="name" value="Astra" /></td></tr>
+						<tr><td>Travelsky</td><td><input type="checkbox" name="Persdata[]" class="name" value="Travelsky" /></td></tr>
+						<tr><td>AngeLight</td><td><input type="checkbox" name="Persdata[]" class="name" value="AngeLight" /></td></tr>
+						<tr><td colspan="2"><p><input type="submit" name="send" class="send" value="ВВОД"></p></td></tr></table>
 				
 				</form>
 		

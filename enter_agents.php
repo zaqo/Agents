@@ -48,7 +48,7 @@ include ("login_agents.php");
 		mysqli_select_db($db_server,$db_database)or die(mysqli_error($db_server));
 		
 		//Prepare list of agents
-		$textsql='SELECT  tab_num,name FROM agents WHERE status=1 ORDER BY name';
+		$textsql='SELECT  tab_num,name,status FROM agents WHERE status=1 ORDER BY name';
 		$answsql=mysqli_query($db_server,$textsql);
 		$num_of_ags=mysqli_num_rows($answsql);
 		$i=0;
@@ -57,7 +57,7 @@ include ("login_agents.php");
 			for ($i=0;$i<$num_of_ags;$i++)  
 				{
 					$ag_in[$i]= mysqli_fetch_row($answsql);
-					$ag_string=$ag_string.'<option value="'.($ag_in[$i][0]).'">'.($ag_in[$i][1]).'</option>';
+					if ($ag_in[$i][2]) $ag_string=$ag_string.'<option value="'.($ag_in[$i][0]).'">'.($ag_in[$i][1]).'</option>';
 				}
 			$ag_string=$ag_string.'</select>';
 			

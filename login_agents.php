@@ -11,5 +11,5 @@
 	$serverName = '172.16.90.39'; //serverName\instanceName
 	$tablename="dbo.[NCG\$Route]";
 	$connectionInfo = array( "Database"=>'NCG_PRODUCTION', "UID"=>"php", "PWD"=>"12345sql");
-	$systems=array("DCS","Amadeus","Sabre","BA","Navitare","Troya","SITA","Astra","Travelsky","AngeLight");
+	$systems=array("status","DCS","Amadeus","Sabre","BA","Navitare","Troya","SITA","Astra","Travelsky","AngeLight");
 ?>
