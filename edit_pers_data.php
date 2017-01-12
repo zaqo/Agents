@@ -73,7 +73,7 @@ $status="";
 						<tr><td>BA</td><td><input type="checkbox" name="Persdata[]" class="name" value="BA" '.$ba.'/></td></tr>
 						<tr><td>Navitar</td><td><input type="checkbox" name="Persdata[]" class="name" value="Navitare" '.$nav.' /></td></tr>
 						<tr><td>Troya</td><td><input type="checkbox" name="Persdata[]" class="name" value="Troya" '.$tro.'/></td></tr>
-						<tr><td>EK</td><td><input type="checkbox" name="Persdata[]" class="name" value="SITA" '.$ek.'/></td></tr>
+						<tr><td>EK</td><td><input type="checkbox" name="Persdata[]" class="name" value="EK" '.$ek.'/></td></tr>
 						<tr><td>Astra</td><td><input type="checkbox" name="Persdata[]" class="name" value="Astra" '.$ast.'/></td></tr>
 						<tr><td>Travelsky</td><td><input type="checkbox" name="Persdata[]" class="name" value="Travelsky" '.$tra.'/></td></tr>
 						<tr><td>AngeLight</td><td><input type="checkbox" name="Persdata[]" class="name" value="AngeLight" '.$ang.'/></td></tr>

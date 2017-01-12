@@ -24,7 +24,7 @@ END;
 		// Iterating through the array
 		$counter=1;		
 		//LOOK UP list of agents
-				$textsql='SELECT * FROM agents';// AND DATE_FORMAT(date,"%d-%m-%Y") = "'.$datestr.'")'; 
+				$textsql='SELECT * FROM agents ORDER BY name';// AND DATE_FORMAT(date,"%d-%m-%Y") = "'.$datestr.'")'; 
 				$answsql=mysqli_query($db_server,$textsql);
 				if(!$answsql) die("Database insert failed: ".mysqli_error($db_server));
 				
@@ -33,17 +33,17 @@ END;
 				$person= mysqli_fetch_row($answsql); // This one is to skip empty record at the top
 				$value="";
 				
-				for($counter=1;$counter<=$num_of_ags;$counter++)
+				for($counter=1;$counter<$num_of_ags;$counter++) // < BECAUSE WE HIDE EMPTY AGENT RECORD
 				{	
 					
 					$person= mysqli_fetch_row($answsql);
 					if ($person[2]==1) $value="Ok";
 					else $value="";
 					$AgentSys="";
-					for ($i=0;$i<10;$i++) {if ($person[$i+3]) $AgentSys=$AgentSys." $systems[$i],";};
+					for ($i=1;$i<11;$i++) {if ($person[$i+2]) $AgentSys=$AgentSys." $systems[$i],";};
 					$AgentSys=substr($AgentSys,0,strlen($AgentSys)-1); // cut the last character
 					echo "<tr><td>$counter</td><td>$person[1]</td>
-						<td><a href=edit_pers_data.php?val=$person[0];>$person[0]</td>
+						<td><a href=edit_pers_data.php?val=$person[0]>$person[0]</td>
 						<td>$value</td>
 						<td>$AgentSys</td></tr>";
 						
