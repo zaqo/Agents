@@ -1,5 +1,7 @@
 <?php
 include ("login_agents.php"); 
+include ("header.php"); 
+if(!$loggedin) echo "<script>window.location.replace('/Agents/login.php');</script>";
 ?>
 <html lang="ru">
 	<head>
@@ -14,38 +16,8 @@ include ("login_agents.php");
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	</head>
 	<body>
-	 <div class="dropdown">
-		<button onclick="myFunction()" class="dropbtn">Меню</button>
-		<div id="myDropdown" class="dropdown-content">
-			<a href="pers_rec.php">Данные сотрудника</a>
-			<a href="list_agents.php">Список сотрудников</a>
-			<a href="add_agent.html">Создать карточку</a>
-		</div>
-	</div>
-	 <script>
-	
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-	function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-	}
+	 
 
-// Close the dropdown if the user clicks outside of it
-	window.onclick = function(event) {
-		if (!event.target.matches('.dropbtn')) {
-
-			var dropdowns = document.getElementsByClassName("dropdown-content");
-			var i;
-			for (i = 0; i < dropdowns.length; i++) {
-			var openDropdown = dropdowns[i];
-				if (openDropdown.classList.contains('show')) {
-					openDropdown.classList.remove('show');
-				}
-			}
-		}
-	
-	}
-	</script> 
 		<h1>Работа агента за период</h1>
 		
 		<form id="form" method="post" action="stats_by_day.php" >

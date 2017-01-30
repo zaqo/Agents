@@ -1,5 +1,6 @@
 ﻿<?php
 include ("login_agents.php"); 
+include_once("header.php");
 ?>
 		<html>
 		
@@ -7,38 +8,13 @@ include ("login_agents.php");
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link rel="stylesheet" type="text/css" href="/Agents/css/style.css" />
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script type="text/javascript">
-
-		function addMyField () {
-			var telnum = parseInt($('#add_field_area').find('div.add:last').attr('id').slice(3))+1;
-			var $content=$("select#val1").html();
-			$('div#add_field_area').find('div.add:last').append('<div id="field'+telnum+'"><hr><tr><div id="add'+telnum+'" class="add"><label> №'+telnum+
-			'</label><select name="val'+telnum+'" id="val" onblur="writeFieldsValues();" >'+$content+
-			'</select></div></tr><tr><div class="deletebutton" onclick="deleteField('+telnum+');"></div></tr></div>');
-		}
-		
-		function deleteField (id) {
-			$('div#field'+id).remove();
-		}
-
-		function writeFieldsValues () {
-			var str = [];
-			var tel = '';
-			for(var i = 0; i<$("select#val").length; i++) {
-			tel = $($("select#val")[i]).val();
-				if (tel !== '') {
-					str.push($($("input#values")[i]).val());
-				}
-			}
-			$("input#values").val(str.join("|"));
-		}
-		</script>		
+		<script src="/Agents/js/form_methods.js"></script>		
 		<title>Выбор сотрудника</title>
 	</head>
 	<body>
 	<?php
 	
-	
+	if (!$loggedin) die();
 	//Connect to database
 		$db_server = mysqli_connect($db_hostname, $db_username,$db_password);
 		$db_server->set_charset("utf8");
