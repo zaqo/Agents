@@ -16,10 +16,20 @@ echo <<<END
 END;
 	$tab_num= $_REQUEST['tab_num'];
 	$flightcode= $_REQUEST['flightcode'];
+	$tr_date=$_REQUEST['date'];
 	//$flightcode=iconv('windows-1251','utf-8',$flightcode);
     $datetime = new DateTime();
-	$datestr = $datetime->format('d-m-Y');
+	//$datestr = $datetime->format('d-m-Y');
 	//echo $id;
+	$day= substr($tr_date,0,2);
+	$dayint=(int)$day;
+	$month= substr($tr_date,3,2);
+	$monthint=(int)$month;
+	$year=substr($tr_date,-4);
+	$yearint=(int)$year;
+	//echo "Date is ".$day.$month.$year."<br>";
+	$datetime=mktime(0,0,0,$month,$day,$year);
+	$date_from=date("Y-m-d", $datetime);
 	
 	
 //echo 'Некоторая отладочная информация:';
@@ -34,7 +44,7 @@ $row = 1;
 $inserted=0;
 $updated=0;
 				echo '<script>confirm("Удалить запись об агенте?")</script>';	
-				$textsql='DELETE FROM  oneregister WHERE agent="'.$tab_num.'" AND route="'.$flightcode.'" AND date=CURDATE()';
+				$textsql='DELETE FROM  oneregister WHERE agent="'.$tab_num.'" AND route="'.$flightcode.'" AND date="'.$date_from.'"';
 				$answsql=mysqli_query($db_server,$textsql);
 				if(!$answsql) die("Database insert failed: ".mysqli_error($db_server));
 				echo '<script>history.go(-1);</script>';	

@@ -39,7 +39,16 @@ include ("login_agents.php");
 	<?php
 	$step= $_REQUEST['step'];
 	$flightcode= $_REQUEST['flightcode'];
-	
+	$tr_date= $_GET['date'];
+	$day=substr($tr_date,0,2);
+	$month=substr($tr_date,3,2);
+	$year=substr($tr_date,-4);
+	//echo "Date is ".$day.$month.$year."<br>";
+	$date_f=mktime(0,0,0,$month,$day,$year);
+	$date_from=date("Y-m-d", $date_f);
+	//echo "DATE is: ".$date_from."<\br>";
+	//if (!isset($tr_date)) $tr_date=getdate(); //transaction date
+
 	
 	//Connect to database
 		$db_server = mysqli_connect($db_hostname, $db_username,$db_password);
@@ -85,6 +94,7 @@ include ("login_agents.php");
 			</td></tr>	
 			<tr><td><input type="hidden" value=2 name="step">
 			 <input type="hidden" value="<?=$flightcode?>" name="flightcode">
+			 <input type="hidden" value="<?=$date_from?>" name="date">
 			 <input type="submit" value="ВВОД">
 			 </td></tr></center>
 			</table>
@@ -94,10 +104,10 @@ include ("login_agents.php");
    if ($step==2) //After SUBMIT we update records
    {
 	$agents=array();
-	$count = count($_GET)-2;
+	$count = count($_GET)-3;
 	$ik=0;
 	$flightcode= $_GET['flightcode'];
-
+	$date_fin=$_GET['date'];
 	foreach ($_GET as $got)
 	{
 		$agents[$ik]=$got;
@@ -118,7 +128,7 @@ include ("login_agents.php");
 					}
 				}			
 				if(($agents[$i]!=0)&&($unique!=0)){ //Skip empty records
-						$textsql='INSERT INTO oneregister (date,agent,route) VALUES (CURRENT_TIMESTAMP,"'.$agents[$i].'","'.$flightcode.'")';
+						$textsql='INSERT INTO oneregister (date,agent,route) VALUES ("'.$date_fin.'","'.$agents[$i].'","'.$flightcode.'")';
 						//echo " Tab_num= ".$agents[$i]." : - inserting! <br>";
 						$answsql=mysqli_query($db_server,$textsql);
 						if(!$answsql) die("Database update failed: ".mysqli_error($db_server));

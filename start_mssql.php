@@ -1,4 +1,4 @@
-﻿<?php 
+﻿<?php require_once 'login_agents.php';
 		echo <<<END
 		<html>
 		
@@ -12,7 +12,7 @@
 	<body>
 END;
 	
-		require_once 'login_agents.php';
+		
 		
 		$datetime = new DateTime();
 		$datestr = $datetime->format('d-m-Y');
@@ -42,7 +42,7 @@ END;
 		
 		
 		// Top of the table
-		echo "<table><caption><b>Суточный график работы</b></caption>";
+		echo "<table><caption><b>Суточный график работы </b></caption><br>$datestr";
 		echo '<tr><th>№ </th><th>Время</th><th>Рейс</th><th>Агенты</th></tr>';
 		// Iterating through the array
 		$counter=1;
@@ -63,12 +63,12 @@ END;
 				$row_span=$num_of_ags;
 				if ($num_of_ags==0) {
 					echo "<tr><td>$counter</td><td>$time_of_dep</td>
-						<td><a href=enter_agents.php?flightcode=$flightcode&step=1;>$flightcode</td><td></td></tr>";
+						<td><a href=enter_agents.php?flightcode=$flightcode&step=1&date=$datestr;>$flightcode</td><td></td></tr>";
 				}
 				else
 				{
 					echo "<tr><td>$counter</td><td >$time_of_dep</td>
-						<td><a href=enter_agents.php?flightcode=$flightcode&step=1;>$flightcode</td><td>";
+						<td><a href=enter_agents.php?flightcode=$flightcode&step=1&date=$datestr;>$flightcode</td><td>";
 						$ag_count=0;
 						while ($ag_count<$num_of_ags)
 						{
@@ -76,7 +76,7 @@ END;
 							$ag_tab=$result_arr[0];
 							$ag_in=$result_arr[1];
 							//echo "<a href=delete_agent.php?tab_num=$ag_tab&flightcode=$flightcode>$ag_in , ";
-							echo "<a href=delete_agent.php?tab_num=$ag_tab&flightcode=$flightcode>$ag_in ";
+							echo "<a href=delete_agent.php?tab_num=$ag_tab&flightcode=$flightcode&date=$datestr;>$ag_in ";
 							$ag_count++;
 						}
 						echo "</td></tr>";

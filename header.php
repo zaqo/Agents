@@ -38,6 +38,7 @@
 			<a href=\"list_agents.php\">Список сотрудников</a>
 			<a href=\"add_agent.html\">Создать карточку</a>
 			<a href=\"report_by_carrier_monthly.php\">Месячный отчет</a>
+			<a href=\"start_mssql_yesterday.php\">Отчет День - 1</a>
 			<a href=\"logout.php\">Выйти из системы</a>
 		</div>
 	</div>
