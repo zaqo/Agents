@@ -63,13 +63,13 @@ END;
 		mysqli_select_db($db_server,$db_database)or die(mysqli_error($db_server));
 		
 		//Prepare list of records for checkin work
-		$textsql="SELECT date,route,agent,agents.name FROM oneregister LEFT JOIN agents ON oneregister.agent=agents.tab_num WHERE oneregister.date BETWEEN '$date_from' AND '$date_to' ORDER BY agents.name ";
+		$textsql="SELECT date,route,agent,agents.name,agents.tab_num FROM oneregister LEFT JOIN agents ON oneregister.agent=agents.tab_num WHERE oneregister.date BETWEEN '$date_from' AND '$date_to' ORDER BY agents.tab_num ";
 		$answsql=mysqli_query($db_server,$textsql);
 		$num_of_recs=mysqli_num_rows($answsql);
 		echo  "<h1>"." СТАТИСТИКА РАБОТЫ:</h1><br><br><h2><div align='center'> ЗА: ".$date_from_pub." </div></h2> <br>";
 		//echo  "<h1> за период:</h1> ";	
 		echo "<table>";
-		echo "<tr><th>№ </th><th>Агент </th><th>Компании</th></tr>";
+		echo "<tr><th>№ </th><th>Табельный ном. </th><th>Агент </th><th>Компании</th></tr>";
 		$i=0;
 		$agent="";
 		$pers_record="";
@@ -80,6 +80,7 @@ END;
 		}while($one_row[2]==" ");
 		$agent=$one_row[2];
 		$agent_name=$one_row[3];
+		$agent_num=$one_row[4];
 		$carrier=substr($one_row[1],0,2);
 		if ($carrier){
 			$pers_record.=$carrier;
@@ -95,12 +96,13 @@ END;
 			if ($agent!=$ag_curr)
 			{	
 				if($agent_name){ 
-					echo "<tr><td>$k</td><td>$agent_name</td><td>$pers_record</td></tr>";
+					echo "<tr><td>$k</td><td>$agent_num</td><td>$agent_name</td><td>$pers_record</td></tr>";
 				$k++;
 				}	
 				$agent=$ag_curr;
 				$pers_record=$airflight;
 				$agent_name=$one_row[3];
+				$agent_num=$one_row[4];
 			}
 			else
 			{

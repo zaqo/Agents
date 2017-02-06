@@ -35,6 +35,7 @@
 		<button onclick='myFunction()' class='dropbtn'>Меню</button>
 		<div id=\"myDropdown\" class=\"dropdown-content\">
 			<a href=\"pers_rec.php\">Данные сотрудника</a>
+			<a href=\"pers_rec_edit_name.php\">! Изменить ФИО !</a>
 			<a href=\"list_agents.php\">Список сотрудников</a>
 			<a href=\"add_agent.html\">Создать карточку</a>
 			<a href=\"report_by_carrier_monthly.php\">Месячный отчет</a>
