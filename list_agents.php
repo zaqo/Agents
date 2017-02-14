@@ -20,7 +20,7 @@ END;
 		
 		// Top of the table
 		echo "<table><caption><b>Список агентов</b></caption>";
-		echo '<tr><th>№ </th><th>Ф.И.О.</th><th>Таб.номер</th><th>Статус</th><th>Системы</th></tr>';
+		echo '<tr><th>№ </th><th>Ф.И.О.</th><th>Таб.номер</th><th>Системы</th></tr>';
 		// Iterating through the array
 		$counter=1;		
 		//LOOK UP list of agents
@@ -31,20 +31,19 @@ END;
 				$num_of_ags=mysqli_num_rows($answsql);
 				$row_span=$num_of_ags;
 				$person= mysqli_fetch_row($answsql); // This one is to skip empty record at the top
-				$value="";
+				$value=0;
 				
 				for($counter=1;$counter<$num_of_ags;$counter++) // < BECAUSE WE HIDE EMPTY AGENT RECORD
 				{	
 					
 					$person= mysqli_fetch_row($answsql);
-					if ($person[2]==1) $value="Ok";
-					else $value="";
+					if ($person[2]==1) $value=1;
+					else $value=0;
 					$AgentSys="";
 					for ($i=1;$i<11;$i++) {if ($person[$i+2]) $AgentSys=$AgentSys." $systems[$i],";};
 					$AgentSys=substr($AgentSys,0,strlen($AgentSys)-1); // cut the last character
-					echo "<tr><td>$counter</td><td>$person[1]</td>
+					if($value) echo "<tr><td>$counter</td><td>$person[1]</td>
 						<td><a href=edit_pers_data.php?val=$person[0]>$person[0]</td>
-						<td>$value</td>
 						<td>$AgentSys</td></tr>";
 						
 				}
