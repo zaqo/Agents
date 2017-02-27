@@ -1,4 +1,8 @@
 ﻿<?php require_once 'login_agents.php';
+
+include ("header.php"); 
+if(!$loggedin) echo "<script>window.location.replace('/Agents/login.php');</script>";
+
 		echo <<<END
 		<html>
 		

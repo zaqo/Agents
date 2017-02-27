@@ -24,6 +24,7 @@
 	{
 		$user = $_SESSION['user'];
 		$loggedin = TRUE;
+		$status = $_SESSION['status'];
 		$userstr = " ($user)";
 	}
 	else $loggedin = FALSE;
@@ -31,19 +32,50 @@
 	"</head><body>";
 	if ($loggedin)
 	{
-	echo "<div class='dropdown'>
-		<button onclick='myFunction()' class='dropbtn'>Меню</button>
-		<div id=\"myDropdown\" class=\"dropdown-content\">
-			<a href=\"pers_rec.php\">Данные сотрудника</a>
-			<a href=\"pers_rec_edit_name.php\">! Изменить ФИО !</a>
-			<a href=\"list_agents.php\">Список сотрудников</a>
-			<a href=\"add_agent.html\">Создать карточку</a>
-			<a href=\"report_by_carrier_monthly.php\">Месячный отчет</a>
-			<a href=\"start_mssql_yesterday.php\">Отчет День - 1</a>
-			<a href=\"logout.php\">Выйти из системы</a>
-		</div>
-	</div>
-	<div class=\"userid\">Вы вошли в систему как: $userstr</div>";
+		if($status==0) //full access
+		{
+			echo "<div class='dropdown'>
+				<button onclick='myFunction()' class='dropbtn'>Меню</button>
+				<div id=\"myDropdown\" class=\"dropdown-content\">
+				<a href=\"start_mssql.php\">График на сегодня</a>
+				<a href=\"start_mssql_yesterday.php\">Отчет День - 1</a>
+				<a href=\"pers_rec.php\">Данные сотрудника</a>
+				<a href=\"pers_rec_edit_name.php\">! Изменить ФИО !</a>
+				<a href=\"list_agents.php\">Список сотрудников</a>
+				<a href=\"add_agent.html\">Создать карточку</a>
+				<a href=\"report_by_carrier_monthly.php\">Месячный отчет</a>
+				<a href=\"index_daily.php\">Отчет по агенту</a>
+				<a href=\"logout.php\">Выйти из системы</a>
+				</div>
+			</div>
+			<div class=\"userid\">Вы вошли в систему как: $userstr</div>";
+		}
+		elseif($status==1)  //Shift watchers
+		{
+			echo "<div class='dropdown'>
+				<button onclick='myFunction()' class='dropbtn'>Меню</button>
+				<div id=\"myDropdown\" class=\"dropdown-content\">
+				<a href=\"start_mssql_guest.php\">График на сегодня</a>
+				<a href=\"start_mssql_yesterday_guest.php\">Отчет День - 1</a>
+				<a href=\"pers_rec_show.php\">Данные сотрудника</a>
+				<a href=\"logout.php\">Выйти из системы</a>
+				</div>
+			</div>
+			<div class=\"userid\">Вы вошли в систему как: $userstr</div>";
+		}
+		elseif($status==2) //Shift leaders
+		{
+			echo "<div class='dropdown'>
+				<button onclick='myFunction()' class='dropbtn'>Меню</button>
+				<div id=\"myDropdown\" class=\"dropdown-content\">
+				<a href=\"start_mssql.php\">График на сегодня</a>
+				<a href=\"start_mssql_yesterday.php\">Отчет День - 1</a>
+				<a href=\"pers_rec_show.php\">Данные сотрудника</a>
+				<a href=\"logout.php\">Выйти из системы</a>
+				</div>
+			</div>
+			<div class=\"userid\">Вы вошли в систему как: $userstr</div>";
+		}
 	}
 	else
 	{

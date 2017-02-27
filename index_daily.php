@@ -44,8 +44,8 @@ if(!$loggedin) echo "<script>window.location.replace('/Agents/login.php');</scri
 						$ag_string=$ag_string.'<option value="'.($ag_in[$i][0]).'">'.($ag_in[$i][1]).'</option>';
 					}
 				$ag_string='<select class="agents" id="val1" name="val"><option value=""></option>'.$ag_string.'</select>';
-				echo $ag_string;
-			?>
+				echo $ag_string;?>
+
 			</div>
 			<p>С:</p>
 			<p>День:</p>
@@ -252,8 +252,9 @@ if(!$loggedin) echo "<script>window.location.replace('/Agents/login.php');</scri
 		});	
 		
 		</script>
-		<?php mysqli_free_result($answsql);
+
+<?php			mysqli_free_result($answsql);
 			mysqli_close($db_server);
-		?>
+?>
 	</body>
 </html>

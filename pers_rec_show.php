@@ -1,6 +1,7 @@
 ﻿<?php
 include ("login_agents.php"); 
-include_once("header.php");
+include ("header.php"); 
+if(!$loggedin) echo "<script>window.location.replace('/Agents/login.php');</script>";
 ?>
 		<html>
 		
@@ -38,7 +39,7 @@ include_once("header.php");
 			
 		
 			echo  "<h1>"." ВЫБЕРИТЕ СОТРУДНИКОВ: "." </h1> ";	
-			echo '<form action=pers_data.php>';
+			echo '<form action=show_pers_data.php>';
 			//echo "<div id=\"add_field_area\">";
 			echo "<table>";
 			//echo "<tr><th>РЕЙС: $flightcode</th></tr>";
