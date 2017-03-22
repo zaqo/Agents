@@ -6,7 +6,7 @@
 		<html>
 		
 		<head>
-		<title>Суточный график (-1)</title>
+		<title>Суточный график</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf8">
 		
 		<link rel="stylesheet" type="text/css" href="/Agents/css/style.css" />
@@ -18,9 +18,9 @@ END;
 		
 		
 		$datetime = new DateTime();
-		$yesterday = new DateTime('yesterday');
-		$yes_date=$yesterday->format('d-m-Y');
-		$sql_date=$yesterday->format('Y-m-d');
+		$daybeforeyesterday = date('d.m.Y',strtotime("-2 day"));
+		$sql_date = date('Y.m.d',strtotime("-2 day"));
+		$yes_date=$daybeforeyesterday;
 		$datestr = $datetime->format('d-m-Y');
 		
 		$conn = sqlsrv_connect( $serverName, $connectionInfo);
@@ -29,7 +29,7 @@ END;
 					die(print_r(sqlsrv_errors(),true));
 					}
 		
-		$tsql = "select [Income], CONVERT(time,[Time]),[Outcome No_],[Owner Name] from $tablename WHERE  CONVERT (date, [Date])= CONVERT (date, (GETDATE()-1)) ORDER BY [Time]; "; //Request to MS SQL
+		$tsql = "select [Income], CONVERT(time,[Time]),[Outcome No_],[Owner Name] from $tablename WHERE  CONVERT (date, [Date])= CONVERT (date, (GETDATE()-2)) ORDER BY [Time]; "; //Request to MS SQL
 
 		$stmt = sqlsrv_query( $conn, $tsql);
 		
@@ -70,12 +70,12 @@ END;
 				$row_span=$num_of_ags;
 				if ($num_of_ags==0) {
 					echo "<tr><td>$counter</td><td>$time_of_dep</td>
-						<td><a href=enter_agents.php?flightcode=$flightcode&step=1&date=$yes_date;>$flightcode</td><td></td></tr>";
+						<td>$flightcode</td><td></td></tr>";
 				}
 				else
 				{
 					echo "<tr><td>$counter</td><td >$time_of_dep</td>
-						<td><a href=enter_agents.php?flightcode=$flightcode&step=1&date=$yes_date;>$flightcode</td><td>";
+						<td>$flightcode</td><td>";
 						$ag_count=0;
 						while ($ag_count<$num_of_ags)
 						{
@@ -83,7 +83,7 @@ END;
 							$ag_tab=$result_arr[0];
 							$ag_in=$result_arr[1];
 							//echo "<a href=delete_agent.php?tab_num=$ag_tab&flightcode=$flightcode>$ag_in , ";
-							echo "<a href=delete_agent.php?tab_num=$ag_tab&flightcode=$flightcode&date=$yes_date>$ag_in ";
+							echo "$ag_in ";
 							$ag_count++;
 						}
 						echo "</td></tr>";

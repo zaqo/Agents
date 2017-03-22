@@ -6,7 +6,7 @@
 		<html>
 		
 		<head>
-		<title>Суточный график (-1)</title>
+		<title>Суточный график (-2)</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf8">
 		
 		<link rel="stylesheet" type="text/css" href="/Agents/css/style.css" />
@@ -18,9 +18,11 @@ END;
 		
 		
 		$datetime = new DateTime();
-		$yesterday = new DateTime('yesterday');
-		$yes_date=$yesterday->format('d-m-Y');
-		$sql_date=$yesterday->format('Y-m-d');
+		$daybeforeyesterday = date('d.m.Y',strtotime("-2 day"));
+		$sql_date = date('Y.m.d',strtotime("-2 day"));
+		//var_dump($daybeforeyesterday);
+		$yes_date=$daybeforeyesterday;//->format('d-m-Y');
+		//$sql_date=$daybeforeyesterday;//->format('Y-m-d');
 		$datestr = $datetime->format('d-m-Y');
 		
 		$conn = sqlsrv_connect( $serverName, $connectionInfo);
@@ -29,7 +31,7 @@ END;
 					die(print_r(sqlsrv_errors(),true));
 					}
 		
-		$tsql = "select [Income], CONVERT(time,[Time]),[Outcome No_],[Owner Name] from $tablename WHERE  CONVERT (date, [Date])= CONVERT (date, (GETDATE()-1)) ORDER BY [Time]; "; //Request to MS SQL
+		$tsql = "select [Income], CONVERT(time,[Time]),[Outcome No_],[Owner Name] from $tablename WHERE  CONVERT (date, [Date])= CONVERT (date, (GETDATE()-2)) ORDER BY [Time]; "; //Request to MS SQL
 
 		$stmt = sqlsrv_query( $conn, $tsql);
 		

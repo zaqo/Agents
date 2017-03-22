@@ -56,7 +56,8 @@
 				<button onclick='myFunction()' class='dropbtn'>Меню</button>
 				<div id=\"myDropdown\" class=\"dropdown-content\">
 				<a href=\"start_mssql_guest.php\">График на сегодня</a>
-				<a href=\"start_mssql_yesterday_guest.php\">Отчет День - 1</a>
+				<a href=\"start_mssql_yesterday_guest.php\">Отчет: ВЧЕРА</a>
+				<a href=\"start_mssql_daybeforeyesterday_guest.php\">Отчет:ПОЗАВЧЕРА</a>
 				<a href=\"pers_rec_show.php\">Данные сотрудника</a>
 				<a href=\"logout.php\">Выйти из системы</a>
 				</div>
@@ -69,7 +70,8 @@
 				<button onclick='myFunction()' class='dropbtn'>Меню</button>
 				<div id=\"myDropdown\" class=\"dropdown-content\">
 				<a href=\"start_mssql.php\">График на сегодня</a>
-				<a href=\"start_mssql_yesterday.php\">Отчет День - 1</a>
+				<a href=\"start_mssql_yesterday.php\">Отчет: ВЧЕРА</a>
+				<a href=\"start_mssql_daybeforeyesterday.php\">Отчет:ПОЗАВЧЕРА</a>
 				<a href=\"pers_rec_show.php\">Данные сотрудника</a>
 				<a href=\"logout.php\">Выйти из системы</a>
 				</div>
