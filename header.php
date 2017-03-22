@@ -38,7 +38,8 @@
 				<button onclick='myFunction()' class='dropbtn'>Меню</button>
 				<div id=\"myDropdown\" class=\"dropdown-content\">
 				<a href=\"start_mssql.php\">График на сегодня</a>
-				<a href=\"start_mssql_yesterday.php\">Отчет День - 1</a>
+				<a href=\"start_mssql_yesterday.php\">Отчет: ВЧЕРА</a>
+				<a href=\"start_mssql_daybeforeyesterday.php\">Отчет: ПОЗАВЧЕРА</a>
 				<a href=\"pers_rec.php\">Данные сотрудника</a>
 				<a href=\"pers_rec_edit_name.php\">! Изменить ФИО !</a>
 				<a href=\"list_agents.php\">Список сотрудников</a>
