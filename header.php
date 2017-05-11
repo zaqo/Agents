@@ -47,7 +47,7 @@
 				<a href=\"report_by_carrier_monthly.php\">Месячный отчет</a>
 				<a href=\"index_daily.php\">Отчет по агенту</a>
 				<a href=\"search_by_flight.php\">Поиск по рейсу</a>
-				<a href=\"search_by_flight.php\">Поощрения/Наказания</a>
+				<a href=\"penalty.php\">Поощрения/Наказания</a>
 				<a href=\"logout.php\">Выйти из системы</a>
 				</div>
 			</div>
