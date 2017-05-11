@@ -174,7 +174,7 @@ END;
 	//echo $query_day."<br>";
 	$day_answ = mysql_query($query_day);
 	$rowsin = mysql_num_rows($day_answ);
-	$day_row= mysql_fetch_row($day_answ);
+	//$day_row= mysql_fetch_row($day_answ);
 	//echo "RESPONSE is: ".$rowsin."<\br>";	
 	
 		echo  "<h1>"." СТАТИСТИКА РАБОТЫ:</h1><br><br><h2><div align='center'> C: ".$date_from_g."    ПО: ".$date_to_g." </div></h2> <br>";

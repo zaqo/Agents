@@ -46,6 +46,7 @@
 				<a href=\"add_agent.html\">Создать карточку</a>
 				<a href=\"report_by_carrier_monthly.php\">Месячный отчет</a>
 				<a href=\"index_daily.php\">Отчет по агенту</a>
+				<a href=\"search_by_flight.php\">Поиск по рейсу</a>
 				<a href=\"logout.php\">Выйти из системы</a>
 				</div>
 			</div>
@@ -74,6 +75,7 @@
 				<a href=\"start_mssql_yesterday.php\">Отчет: ВЧЕРА</a>
 				<a href=\"start_mssql_daybeforeyesterday.php\">Отчет:ПОЗАВЧЕРА</a>
 				<a href=\"pers_rec_show.php\">Данные сотрудника</a>
+				<a href=\"search_by_flight.php\">Поиск по рейсу</a>
 				<a href=\"logout.php\">Выйти из системы</a>
 				</div>
 			</div>
