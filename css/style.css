@@ -139,3 +139,14 @@ caption:before, caption:after {
   color: #A9E2CC;
   margin: 0 10px;
 }
+/* For marking text in menues*/
+   .colortext {
+    background-color: lightblue; /* Цвет фона */
+    color: black; /* Цвет текста */
+	 
+	border: 1px solid #aaa;
+	font-weight: bold;
+	text-align: center;
+	padding: 3px;
+   }
+  
