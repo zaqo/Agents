@@ -8,7 +8,7 @@ echo <<<END
 		
 		<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<link rel="stylesheet" type="text/css" href="/test/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/Agents/css/style.css" />
 		<title>Личная карточка Агента</title>
 	</head>
 	<body>
