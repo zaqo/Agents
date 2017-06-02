@@ -44,7 +44,7 @@ if(!$loggedin) echo "<script>window.location.replace('/Agents/login.php');</scri
 	<body>
 	 
 
-		<h1>Депремирование</h1>
+		<h1>Оценка работы</h1>
 		
 		<form id="form" method="post" action="record_penalty.php" >
 			

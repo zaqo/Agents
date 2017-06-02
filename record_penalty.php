@@ -1,5 +1,4 @@
-
-	<?php 
+<?php 
 		
 		echo <<<END
 		<html>
@@ -81,8 +80,8 @@ END;
 	$date_from=date("Y-m-d", $date_f);
 	
 		
-		$textsql='INSERT INTO pen_register(goodbad,date,agentid,description,percentage,booked_by,booked_date) 
-		VALUES ("'.$goodbad.'","'.$date_from.'", "'.$agent.'","'.$text.'","'.$pct.'","'.$user.'",CURRENT_DATE)';
+		$textsql='INSERT INTO pen_register(goodbad,date,agentid,description,percentage,booked_by,booked_date,isDeleted) 
+		VALUES ("'.$goodbad.'","'.$date_from.'", "'.$agent.'","'.$text.'","'.$pct.'","'.$user.'",CURRENT_DATE,0)';
 	
 	
 		
@@ -100,7 +99,7 @@ END;
 	
 	// Second look for records about him
 	
-	$query_user = "SELECT date, description,percentage, booked_by, booked_date,goodbad FROM pen_register 
+	$query_user = "SELECT date, description,percentage, booked_by, booked_date,goodbad,isDeleted FROM pen_register 
 					WHERE pen_register.agentid = '$agent'";
 	$answsql=mysqli_query($db_server,$query_user);
 			if(!$answsql) die("Database SELECT failed: ".mysqli_error($db_server));	
@@ -120,19 +119,22 @@ END;
 			$text_descr=$row[1];
 			$date_reg=$row[0];
 			$date_ins=$row[4];
-			if ($row[5]) 
+			if(!$row[6])
 			{	
-				$type=$red;
-				$pct=$row[2];
+				if ($row[5]) 
+				{	
+					$type=$red;
+					$pct=$row[2];
+				}
+				else
+				{
+					$type=$green;
+					$pct="-";
+				}
+				$date_show=substr($date_reg, 8,2)."-".substr($date_reg, 5,2)."-".substr($date_reg, 2,2);
+				$date_book=substr($date_ins, 8,2)."-".substr($date_ins, 5,2)."-".substr($date_ins, 2,2);
+				echo "<tr><td>$Num</td><td>$type</td><td>$date_show</td><td>$row[1]</td><td>$pct</td><td>$row[3]</td><td>$date_book</td></tr>";
 			}
-			else
-			{
-				$type=$green;
-				$pct="-";
-			}
-			$date_show=substr($date_reg, 8,2)."-".substr($date_reg, 5,2)."-".substr($date_reg, 2,2);
-			$date_book=substr($date_ins, 8,2)."-".substr($date_ins, 5,2)."-".substr($date_ins, 2,2);
-			echo "<tr><td>$Num</td><td>$type</td><td>$date_show</td><td>$row[1]</td><td>$pct</td><td>$row[3]</td><td>$date_book</td></tr>";
 		}
 		echo "</table>"; 
 	echo <<<_END

@@ -82,7 +82,7 @@ $status="";
 
 				// Here records section about agent
 	
-			$query_user = "SELECT date, description,percentage, booked_by, booked_date,goodbad FROM pen_register 
+			$query_user = "SELECT date, description,percentage, booked_by, booked_date,goodbad,pen_id FROM pen_register 
 							WHERE pen_register.agentid = '$id'";
 			$answsql=mysqli_query($db_server,$query_user);
 			if(!$answsql) die("Database SELECT failed: ".mysqli_error($db_server));	
@@ -91,7 +91,7 @@ $status="";
 			echo  "<br><hr><br><div class='colortext'> ОТЗЫВЫ ПО РАБОТЕ АГЕНТА:</div>";
 				
 			echo "<br><table>";
-			echo "<tr><th>№</th><th>Тип</th><th>Дата</th><th>Причина</th><th>%</th><th>Занесено</th><th>Дата</th></tr>";
+			echo "<tr><th>№</th><th>Тип</th><th>Дата</th><th>Причина</th><th>%</th><th>Занесено</th><th>Дата</th><th></th></tr>";
 			$red="<img src='/Agents/src/redcircle.png' alt='Penalty'  width='32' height='32'>";
 			$green="<img src='/Agents/src/greencircle.png' alt='Penalty'  width='32' height='32'>";
 			for ($j=0; $j<$rows; $j++)
@@ -114,7 +114,8 @@ $status="";
 				}
 				$date_show=substr($date_reg, 8,2)."-".substr($date_reg, 5,2)."-".substr($date_reg, 2,2);
 				$date_book=substr($date_ins, 8,2)."-".substr($date_ins, 5,2)."-".substr($date_ins, 2,2);
-				echo "<tr><td>$Num</td><td>$type</td><td>$date_show</td><td>$row[1]</td><td>$pct</td><td>$row[3]</td><td>$date_book</td></tr>";
+				echo "<tr><td>$Num</td><td>$type</td><td>$date_show</td><td><a href='update_penalty.php?val=$row[6]'>$text_descr</a></td><td>$pct</td><td>$row[3]</td><td>$date_book</td>
+						<td><a href='delete_penalty.php?val=$row[6]' > <img src='/Agents/css/delete.png' alt='Delete' title='Удалить' ></a></td></tr>";
 			}
 			echo "</table>"; 
 		echo <<<_END
