@@ -7,7 +7,7 @@ if(!$loggedin) echo "<script>window.location.replace('/Agents/login.php');</scri
 	$tab_num= $_REQUEST['tab_num'];
 	$Personal= $_REQUEST['Persdata'];
 	
-	var_dump($Personal);
+	//var_dump($Personal);
 	
 		$db_server = mysqli_connect($db_hostname, $db_username,$db_password);
 		$db_server->set_charset("utf8");

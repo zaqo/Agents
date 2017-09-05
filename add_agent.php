@@ -5,7 +5,7 @@ include ("login_agents.php");
 				$name=$_REQUEST['fio'];
 				$Personal= $_REQUEST['Persdata'];
 	
-				var_dump($Personal);var_dump($tab_num);var_dump($name);
+				//var_dump($Personal);var_dump($tab_num);var_dump($name);
 	
 				$db_server = mysqli_connect($db_hostname, $db_username,$db_password);
 				$db_server->set_charset("utf8");
