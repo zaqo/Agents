@@ -162,13 +162,13 @@ if(!$loggedin) echo "<script>window.location.replace('/Agents/login.php');</scri
 					event.preventDefault();
 				return false;
 			}
-			
+			/*
 			var res=$.post(
 					$(this).attr("action"),
 					$(this).serialize(),
 					void(0)
 				).html();
-				
+				*/
 				return;
 		});	
 		function yesnoCheck() {

@@ -30,7 +30,7 @@ $row = 1;
 $inserted=0;
 $updated=0;
 				echo '<script>var doDel=confirm("Удалить запись?");
-					if(doDel) window.location.replace("http://localhost:8082/Agents/delete_penalty_exe.php?val='.$id.'");
+					if(doDel) window.location.replace("http://localhost/Agents/delete_penalty_exe.php?val='.$id.'");
 				</script>';	
 				
 				echo '<script>history.go(-1);</script>';	
