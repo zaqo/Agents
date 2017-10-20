@@ -8,6 +8,7 @@
 			<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
 		
 			<link rel="stylesheet" type="text/css" href="/Agents/css/style.css" />
+			<link rel="stylesheet" type="text/css" href="/Agents/css/w3.css" />
 			<!--[if lt IE 9]> 
 			<script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 			<![endif]-->

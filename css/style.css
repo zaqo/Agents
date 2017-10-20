@@ -149,4 +149,27 @@ caption:before, caption:after {
 	text-align: center;
 	padding: 3px;
    }
-  
+   .calendar {
+	text-align: center;
+	vertical-align:middle;
+	margin: 12px 0 0 2px;
+	padding: 16px;
+	width:100%
+}
+  .cal_block {
+	vertical-align:middle;
+	font-size: 13px;
+	border: 2px solid #70A9FD;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+	cursor: pointer;
+	margin: 6px 0 20px 2px;
+
+	padding: 6px;
+	width:60%;
+} 
+.avia_block {
+	
+	margin: 20px 0 0 20px;
+} 
