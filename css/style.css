@@ -152,7 +152,7 @@ caption:before, caption:after {
    .calendar {
 	text-align: center;
 	vertical-align:middle;
-	margin: 12px 0 0 2px;
+	margin: 22px 0 0 2px;
 	padding: 16px;
 	width:100%
 }
@@ -172,4 +172,8 @@ caption:before, caption:after {
 .avia_block {
 	
 	margin: 20px 0 0 20px;
+} 
+.carrier {
+	
+	margin: 20px 10 10 40px;
 } 

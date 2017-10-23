@@ -180,8 +180,8 @@ if(!$loggedin) echo "<script>window.location.replace('/Agents/login.php');</scri
 						</div>
 				</div>
 			</div>
-			<div class="w3-container w3-display-container w3-teal w3-border calendar">
-				<div id="Carrier" class=" w3-display-middle"> <b><label>Авиакомпания:</label></b>
+			<div class="w3-container w3-teal w3-border calendar">
+				<div id="Carrier" class=""> <b><label>Авиакомпания:</label></b>
 					<select name="carrier" id="carrier"  >
 						<option value="0"> -- любая --</option>
 						<option value="FV">Россия</option>
