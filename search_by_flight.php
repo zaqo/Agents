@@ -80,6 +80,7 @@ if(!$loggedin) echo "<script>window.location.replace('/Agents/login.php');</scri
 			<p>Год: <select name="year_from" id="yfr" class="date" >
 				<option value="2016">2016</option>
 				<option value="2017">2017</option>
+				<option value="2018">2018</option>
 				</select>
 			</p>
 						

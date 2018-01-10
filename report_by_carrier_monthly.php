@@ -38,6 +38,7 @@ echo <<<END
 			<p>Год: <select name="year" id="yfr" class="date" >
 				<option value="2016">2016</option>
 				<option value="2017">2017</option>
+				<option value="2018">2018</option>
 				</select>
 			</p>
 						<p><input type="submit" name="send" class="send" value="ВВОД"></p>
